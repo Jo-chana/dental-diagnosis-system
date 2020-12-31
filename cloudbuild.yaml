@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'asia.gcr.io/chika-chika/chikalab:%COMMIT_SHA', '.']
+    args: ['build', '-t', 'asia.gcr.io/chika-chika/chikalab:$COMMIT_SHA', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'asia.gcr.io/chika-chika/chikalab:$COMMIT_SHA']
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
