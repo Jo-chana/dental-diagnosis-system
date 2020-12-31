@@ -13,7 +13,12 @@
             <input type="file" id="image" name="image" class="upload-hidden" accept=".jpg, .jpeg, .png"/>
             <label for="submit" class="button">측정하기</label>
         </div>
-        <h3>사진과 같이 치아를 드러낸 얼굴 정면 사진을 올려주세요</h3>
-        <input type="submit" id="submit"/>
+        <h3 class="info">사진과 같이 치아를 드러낸 얼굴 정면 사진을 올려주세요</h3>
+        <input type="submit" id="submit" onclick=flash() />
+        <script>
+            function flash(){
+                document.getElementsByClassName("info")[0].innerHTML = "AI가 열심히 활동하고 있어요! 잠시만 기다려주세요^_^";
+            }
+        </script>
     </form>
 {% endblock %}
