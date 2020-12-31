@@ -2,20 +2,22 @@ import tensorflow as tf
 import numpy as np
 import cv2
 import os
-from chikalab import instance_dir
+from flask import url_for
+from chikalab import static_dir
 import dlib
 
 brace_interpreter = None
 occ_interpreter = None
 predictor = None
 detector = None
-ai_dir = os.path.join(instance_dir, 'ai')
+# ai_dir = os.path.join(static_dir, 'ai')
 
 
 def get_brace_interpreter():
     global brace_interpreter
     if brace_interpreter is None:
-        brace_interpreter = tf.lite.Interpreter(model_path=ai_dir + '/tooth_brace.tflite')
+        # brace_interpreter = tf.lite.Interpreter(model_path=ai_dir + '/tooth_brace.tflite')
+        brace_interpreter = tf.lite.Interpreter(model_path=url_for('static', filename='ai/tooth_brace.tflite'))
         brace_interpreter.allocate_tensors()
     return brace_interpreter
 
@@ -23,7 +25,8 @@ def get_brace_interpreter():
 def get_occ_interpreter():
     global occ_interpreter
     if occ_interpreter is None:
-        occ_interpreter = tf.lite.Interpreter(model_path=ai_dir + '/malocclusion.tflite')
+        # occ_interpreter = tf.lite.Interpreter(model_path=ai_dir + '/malocclusion.tflite')
+        occ_interpreter = tf.lite.Interpreter(model_path=url_for('static', filename='ai/malocclusion.tflite'))
         occ_interpreter.allocate_tensors()
     return occ_interpreter
 
@@ -68,7 +71,8 @@ def get_output_tensor_from_interpreter(interpreter, input_data):
 def get_predictor():
     global predictor
     if predictor is None:
-        predictor = dlib.shape_predictor(ai_dir + '/shape_predictor_68_face_landmarks.dat')
+        # predictor = dlib.shape_predictor(ai_dir + '/shape_predictor_68_face_landmarks.dat')
+        predictor = dlib.shape_predictor(url_for('static', filename='ai/shape_predictor_68_face_landmarks.dat'))
     return predictor
 
 
