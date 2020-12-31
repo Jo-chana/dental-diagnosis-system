@@ -1,0 +1,24 @@
+steps:
+  -name: 'gcr.io/cloud-builders/docker'
+   args: ['build', '-t', 'asia.gcr.io/chika-chika/chikalab:%COMMIT_SHA', '.']
+  -name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'asia.gcr.io/chika-chika/chikalab:$COMMIT_SHA']
+  -name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+   entrypoint: gcloud
+   args:
+     - 'run'
+     - 'deploy'
+     - 'chikalab'
+     - '--image'
+     - 'asia.gcr.io/chika-chika/chikalab:$COMMIT_SHA'
+     - '--region'
+     - 'asia-northeast3'
+     - '--memory'
+     - '1024'
+     - '--cpu'
+     - '2'
+     - '--platform'
+     - 'managed'
+images:
+  - 'asia.gcr.io/chika-chika/chikalab:$COMMIT_SHA'
+timeout: 1800s

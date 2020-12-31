@@ -1,0 +1,6 @@
+tensorflow >= 2.1.0
+opencv-python >= 3.4.0.14
+numpy ~= 1.18.5
+boto3 ~= 1.16.25
+Flask ~= 1.1.2
+gunicorn
