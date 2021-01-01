@@ -33,7 +33,7 @@ def upload_file(name):
             img = get_image_from_request(request)
             file_path, img = get_file_path_with_result_image(img)
             if file_path is None:
-                flash("얼굴 사진을 보내주세요")
+                flash("얼굴이 아닌 사진을 올리셨나요? AI가 판단할 수 없는 사진이에요 ㅜ.ㅜ")
                 return render_template('main/model.html', model_name=name, model_info=model_list[name])
             brace_result = get_brace_predict(img)
             occ_result = get_occ_predict(img)

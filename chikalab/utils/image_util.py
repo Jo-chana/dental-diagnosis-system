@@ -19,7 +19,7 @@ def get_file_path_with_result_image(image):
     try:
         result_image, mouth_image = detect_mouth_with_signed_image(image)
     except IndexError:
-        return None
+        return None, None
     current_milli = int(round(time.time() * 1000))
     image_name = str(current_milli) + '.jpg'
     print(static_dir)
