@@ -84,6 +84,6 @@ def get_detector():
 
 
 def get_model_list():
-    model_list = {'occlusion': '내 교정 점수 측정하기',
-                  'white': '(준비중)미백 점수 측정하기'}
+    model_list = {'occlusion': '내 치열 상태 측정하기',
+                  'white': '내 미백 점수 측정하기'}
     return model_list
