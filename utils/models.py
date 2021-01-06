@@ -1,23 +1,19 @@
 import tensorflow as tf
 import numpy as np
 import cv2
-import os
 from flask import url_for
-from chikalab import static_dir
 import dlib
 
 brace_interpreter = None
 occ_interpreter = None
 predictor = None
 detector = None
-# ai_dir = os.path.join(static_dir, 'ai')
 
 
 def get_brace_interpreter():
     global brace_interpreter
     if brace_interpreter is None:
-        # brace_interpreter = tf.lite.Interpreter(model_path=ai_dir + '/tooth_brace.tflite')
-        brace_interpreter = tf.lite.Interpreter(model_path='chikalab/' + url_for('static', filename='ai/tooth_brace.tflite'))
+        brace_interpreter = tf.lite.Interpreter(model_path='static/ai/tooth_brace.tflite')
         brace_interpreter.allocate_tensors()
     return brace_interpreter
 
@@ -25,8 +21,7 @@ def get_brace_interpreter():
 def get_occ_interpreter():
     global occ_interpreter
     if occ_interpreter is None:
-        # occ_interpreter = tf.lite.Interpreter(model_path=ai_dir + '/malocclusion.tflite')
-        occ_interpreter = tf.lite.Interpreter(model_path='chikalab/' + url_for('static', filename='ai/malocclusion.tflite'))
+        occ_interpreter = tf.lite.Interpreter(model_path='static/ai/malocclusion.tflite')
         occ_interpreter.allocate_tensors()
     return occ_interpreter
 
@@ -36,9 +31,9 @@ def get_brace_predict(cv2_image):
     output_data = get_output_tensor_from_interpreter(get_brace_interpreter(), input_data)
     print(f'***Brace Output - {output_data}')
     if output_data[0][0] > output_data[0][1]:
-        output_data = "False"
+        output_data = "교정기 미착용"
     else:
-        output_data = "True"
+        output_data = "교정기 착용중"
     print(f'**Brace - {output_data}')
     return output_data
 
@@ -71,8 +66,7 @@ def get_output_tensor_from_interpreter(interpreter, input_data):
 def get_predictor():
     global predictor
     if predictor is None:
-        # predictor = dlib.shape_predictor(ai_dir + '/shape_predictor_68_face_landmarks.dat')
-        predictor = dlib.shape_predictor('chikalab/' + url_for('static', filename='ai/shape_predictor_68_face_landmarks.dat'))
+        predictor = dlib.shape_predictor('static/ai/shape_predictor_68_face_landmarks.dat')
     return predictor
 
 

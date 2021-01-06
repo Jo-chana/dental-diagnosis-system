@@ -34,4 +34,4 @@ RUN cd ~ && \
 
 ENV PYTHONUNBUFFERED True
 
-CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 chikalab.wsgi:app
+CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app

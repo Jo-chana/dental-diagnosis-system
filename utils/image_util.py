@@ -1,11 +1,8 @@
 import cv2
-from .image_processing import detect_mouth_with_signed_image
-import os
-from chikalab import static_dir
+from utils.image_processing import detect_mouth_with_signed_image
 from werkzeug.utils import secure_filename
 import time
-from flask import url_for
-from .boto_util import upload_to_s3
+from utils.boto_util import upload_to_s3
 
 
 def get_image_from_request(request):
@@ -24,7 +21,7 @@ def get_file_path_with_result_image(image):
         return None, None
     current_milli = int(round(time.time() * 1000))
     image_name = str(current_milli) + '.jpg'
-    cv2.imwrite(os.path.join(static_dir, image_name), result_image)
-    file_path = url_for('static', filename=f'images/{image_name}')
-    upload_to_s3('chikalab'+file_path, folder_name='chikalab', file_name=image_name)
-    return file_path, mouth_image
+    file_path = f'static/images/{image_name}'
+    cv2.imwrite(file_path, result_image)
+    upload_to_s3(file_path, folder_name='chikalab', file_name=image_name)
+    return '/' + file_path, mouth_image
