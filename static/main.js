@@ -262,9 +262,9 @@ class Model extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <p className='ModelResultText' style={{marginTop:'5rem'}}>
+                    <div style={{marginTop:'5rem', }}>
                         {this.state.infoMessage}
-                    </p>
+                    </div>
                 </div>
                 <div id='modelResult' style={{marginBottom: '10rem'}}>
                     {this.state.modelResult}
@@ -301,7 +301,7 @@ class Model extends React.Component {
         let data = new FormData();
         data.append('image', files[0]);
         this.setState({
-            infoMessage: 'AI가 사진을 분석하고 있어요!'
+            infoMessage: <h4 className='ModelResultText' style={{animationIterationCount: 'infinite'}}>AI가 사진을 분석하고 있어요!</h4>
         });
         fetch('/upload/' + this.state.modelId, {
             method: 'POST',
