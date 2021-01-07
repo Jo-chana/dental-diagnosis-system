@@ -234,7 +234,8 @@ class Model extends React.Component {
                              src={this.state.imageURL? this.state.imageURL : '/static/images/smile.png'}
                              alt='' id='thumbnail'/>
                         <div className='flex-wrap column width-100-only-mobile'>
-                            <p className='main-item-body'>사진과 같이 치아를 보인<br/>얼굴 정면 사진을 올려주세요</p>
+                            <p className='main-item-body'>사진과 같이 치아를 보인<br/>
+                            얼굴 정면 사진을 올려주세요<br/>* 얼굴의 전체 모습을 찍어야 인식할 수 있어요:)</p>
                             <div className='flex-wrap width100 font-size-middle'>
                                 <div className='button b-main-color white flex-wrap'>
                                     <label htmlFor='image' className='button flex-wrap text-center'>사진 선택</label>
