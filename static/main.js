@@ -200,11 +200,14 @@ class Model extends React.Component {
             resultURL: '',
             modelId: this.props.location.state.modelId,
             modelResult: null,
+            modelTry: null,
+            alertMessage: '',
         }
         this.handleUploadImage = this.handleUploadImage.bind(this);
         this.onSubmitActivate = this.onSubmitActivate.bind(this);
         this.responseResult = this.responseResult.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
+        this.showResult = this.showResult.bind(this);
     }
 
     componentDidMount() {
@@ -219,9 +222,15 @@ class Model extends React.Component {
     }
 
     scrollToBottom(){
-        let page = document.getElementById('modelPage');
-        let bottom = page.offsetTop + page.offsetHeight;
-        window.scrollTo({top: bottom, behavior: "smooth"});
+        if (this.state.modelTry === 'modelResult') {
+            let page = document.getElementById('modelPage');
+            let bottom = page.offsetTop + page.offsetHeight;
+            window.scrollTo({top: bottom, behavior: "smooth"});
+        } else if (this.state.modelTry === 'infoMessage') {
+            let modelTry = document.getElementById('modelTry');
+            let bottom = modelTry.offsetTop + (modelTry.offsetHeight / 2);
+            window.scrollTo({top: bottom, behavior: "smooth"});
+        }
     }
 
     render(){
@@ -249,12 +258,16 @@ class Model extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div id='infoMessage' className='flex-wrap' style={{marginTop: '100px'}}>
+                    <div id='infoMessage' className='flex-wrap' style={{marginTop: '300px', marginBottom: '300px'}}>
                         {this.state.infoMessage}
                     </div>
                 </div>
-                <div id='modelResult' style={{marginBottom: '10rem'}}>
-                    {this.state.modelResult}
+                <div id='modelResult' className='model-result'>
+                    {this.state.modelResult? this.state.modelResult :
+                        <p className='main-item-title'>이곳에서 결과를 볼 수 있어요</p>}
+                </div>
+                <div className='model-alert b-main-color white'>
+                    {this.state.alertMessage}
                 </div>
             </div>
         );
@@ -289,7 +302,8 @@ class Model extends React.Component {
         let data = new FormData();
         data.append('image', files[0]);
         this.setState({
-            infoMessage: <div className='width50vw height50vw b-main-color white radius10
+            modelTry: 'infoMessage',
+            infoMessage: <div className='model-info-message b-main-color white
             animation-alert animation-infinite flex-wrap'>
                 <h3>AI가 사진을 분석하고 있어요!</h3></div>
         });
@@ -305,18 +319,31 @@ class Model extends React.Component {
     }
 
     responseResult(response) {
-        let model = response.model;
         let code = response.code;
         if (code === '400'){
             this.setState({
-                infoMessage: response.message
+                infoMessage: <div className='model-info-message b-main-color white
+            animation-alert flex-wrap'>
+                <h3>{response.message}</h3></div>
             });
             return;
         }
         this.setState({
-            infoMessage: <p className='main-item-title'>분석을 완료했어요</p>,
+            infoMessage: <div className='model-info-message b-main-color white
+            animation-alert flex-wrap' onClick={()=>this.showResult(response)}>
+                <h3>분석을 완료했어요<br/><b className='font-size-large'>결과보기</b></h3></div>
         });
+    }
 
+    showResult (response) {
+        this.setState({
+            modelTry: 'modelResult',
+            infoMessage: null,
+            alertMessage: <p><b className='main-item-body'>Notice</b>
+                <br/><br/>본 서비스는 흥미 요소를 위함으로, 의료적 사실과는 무관한 정보를 제공합니다.
+                <br/>정확한 치아 및 구강 상태에 대한 정보는 치과의사와 상의하십시오.</p>
+        })
+        let model = response.model;
         switch (model) {
             case 'occlusion':
                 let isBrace = response.isBrace;
@@ -343,6 +370,7 @@ class Model extends React.Component {
                 break
         }
     }
+
 }
 
 class About extends React.Component {
