@@ -36,7 +36,7 @@ def result_occ(request):
     img = get_image_from_request(request)
     file_path, img = get_file_path_with_result_image(img)
     if file_path is None:
-        return {'code': '400', 'message': '얼굴이 아닌 사진을 올리셨나요? AI가 인식할 수 없는 사진이에요 ㅠ.ㅠ'}
+        return {'code': '400', 'message': '얼굴이 아닌 사진을 올리셨나요? AI가 인식할 수 없는 사진이에요 :('}
     brace_result = get_brace_predict(img)
     occ_result = get_occ_predict(img)
     occ_result = str(round(occ_result, 2))

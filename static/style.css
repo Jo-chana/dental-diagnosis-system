@@ -1,0 +1,258 @@
+html {
+    width: 100%;
+    height: auto;
+    font-family: '.AppleSystemUIFont';
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    text-decoration: None;
+}
+
+* {
+    margin: 0;
+}
+
+p {
+    padding: 1.25rem 0;
+}
+
+.font-size-large {
+    font-size: 2.5rem;
+}
+
+.font-size-middle {
+    font-size: 1.5rem;
+}
+
+.padding-none {
+    padding: 0;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.width50vw {
+    width: 50vw;
+}
+
+.height50vw {
+    height: 50vw;
+}
+
+.paddingBottom {
+    padding-bottom: 10%;
+}
+
+.main-title {
+    font-size: 5rem;
+    padding: 2rem 0;
+}
+
+.main-tab {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.main-item {
+    background-color: white;
+    color: #2998ff;
+    padding: 3% 5% 3%;
+    animation-duration: 2s;
+    animation-name: fade-in;
+}
+
+.image {
+    width: 70%;
+    height: auto;
+}
+
+.main-item-title {
+    font-size: 2rem;
+    text-align: center;
+    animation-duration: 2s;
+    animation-name: slide;
+}
+
+.main-item-body {
+    font-size: 1.5rem;
+    text-align: center;
+    animation-duration: 2s;
+    animation-name: slide;
+}
+
+.banner {
+    width: 100%;
+    height: 30%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-center-only-mobile {
+    text-align: center;
+}
+
+.b-main-color {
+    background-color: #2998ff;
+}
+
+.main-color {
+    color: #2998ff;
+}
+
+.b-white {
+    background-color: white;
+}
+
+.white {
+    color: white;
+}
+
+.flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.vertical-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.light {
+    font-weight: lighter;
+}
+
+.model-list {
+    flex-direction: column;
+}
+
+.model-item {
+    width: 100%;
+}
+
+.model-icon {
+    padding: 10%;
+    width: 40vw;
+    height: 40vw;
+}
+
+.opacity05 {
+    opacity: 0.5;
+}
+
+.opacity07 {
+    opacity: 0.7;
+}
+
+.opacity05-hover {
+    opacity: 1;
+}
+
+.opacity07-hover {
+    opacity: 1;
+}
+
+.radius10 {
+    border-radius: 10%;
+}
+
+.radius20 {
+    border-radius: 20%;
+}
+
+.animation-alert {
+    animation-duration: 3s;
+    animation-name: alert;
+}
+
+.animation-slide {
+    animation-duration: 2s;
+    animation-name: slide;
+}
+
+.animation-fade-in {
+    animation-duration: 2s;
+    animation-name: fade-in;
+}
+
+.animation-infinite {
+    animation-iteration-count: infinite;
+}
+
+.button {
+    border: 0;
+    border-radius: 0.5rem;
+    display: table-cell;
+    vertical-align: middle;
+    outline: none;
+    width: 30vw;
+    height: 10vw;
+}
+
+input[type=submit] {
+  opacity: 0;
+  height: 0px;
+  width: 0px;
+}
+
+input[type=file] {
+  opacity: 0;
+  height: 0px;
+  width: 0px;
+}
+
+@keyframes alert {
+    from {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0.3;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    from {
+        margin-top: 30px;
+        opacity: 0;
+    }
+    to {
+        margin-top: 0;
+        opacity: 1;
+    }
+}

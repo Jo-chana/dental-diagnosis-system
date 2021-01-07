@@ -4,7 +4,6 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {isFirst: true, isClick: '',};
-        this.setup = this.setup.bind(this);
         this.mouseOver = this.mouseOver.bind(this);
         this.mouseLeave = this.mouseLeave.bind(this);
         this.onClick = this.onClick.bind(this);
@@ -12,17 +11,17 @@ class Index extends React.Component {
 
     render() {
         return (
-            <div className='Page'>
-                <div className='Banner'>
-                    <a href='/'><h1 className="Title">Chika Lab</h1></a>
+            <div className='width100' id='init-page'>
+                <div className='banner'>
+                    <a href='/'><p className="main-title white text-center">Chika Lab</p></a>
                 </div>
-                <div className='NavTab' id='navTab'>
-                    <Link to='/ai'><h1 className='NavTabText' id='nav1'
+                <div className='flex-wrap b-white main-tab' id='navTab'>
+                    <Link to='/ai'><p className='main-color opacity07-hover' id='nav1'
                                        data-id='nav1' onMouseOver={this.mouseOver}
-                                       onMouseLeave={this.mouseLeave} onClick={this.onClick}>Models</h1></Link>
-                    <Link to='/about'><h1 className='NavTabText' id='nav2'
+                                       onMouseLeave={this.mouseLeave} onClick={this.onClick}>Models</p></Link>
+                    <Link to='/about'><p className='main-color opacity07-hover' id='nav2'
                                           data-id='nav2' onMouseOver={this.mouseOver}
-                                          onMouseLeave={this.mouseLeave} onClick={this.onClick}>About Us</h1></Link>
+                                          onMouseLeave={this.mouseLeave} onClick={this.onClick}>About Us</p></Link>
                 </div>
                 {this.props.children? this.props.children : this.init()}
             </div>
@@ -72,24 +71,11 @@ class Index extends React.Component {
 
     init(){
         return (
-            <div className='MainItem' id='main' onAnimationEnd={this.setup} style={{height: '80vh', justifyContent: 'start', animationDuration: '3s', animationName: 'spread-down'}}>
-                <p className='MainItemTitle' style={{marginTop: '3rem', marginBottom: '2rem'}}>치카치카 AI Lab</p>
-                <p className='MainItemInfo' style={{marginBottom: '1.5rem'}}>Oral Health Application Corporation</p>
+            <div className='main-item' id='main'>
+                <p className='main-item-title'>치카치카 AI Lab</p>
+                <p className='main-item-body light'>Oral Health Application Corporation</p>
             </div>
         );
-    }
-
-    setup(){
-        if (this.state.isFirst) {
-            let location = document.getElementById('navTab').offsetTop - 10;
-            window.scrollTo({top: location, behavior: "smooth"});
-            let img = document.createElement('img');
-            img.src = 'static/images/logo.svg';
-            img.setAttribute('style', 'animation-duration: 3s; animation-name: spread-out; animation-fill-mode: forwards; margin: auto auto;');
-            let e = document.getElementById('main');
-            e.appendChild(img);
-            this.state = {isFirst: false};
-        }
     }
 }
 
@@ -104,23 +90,20 @@ class Models extends React.Component {
     }
     render(){
         return (
-            <div className='MainItem' id='mainModelPage' style={{
-                height: '30rem', animationDuration: '1s', animationName: 'slide',
-                marginBottom: '3rem'
-            }}>
+            <div className='main-item' id='mainModelPage'>
                 <div style={{marginBottom: '3rem'}}>
-                    <p className='MainItemTitle'>Chika Lab AI Models</p>
-                    <p className='MainItemInfo'>Chika Lab 에서 제작중인 다양한 인공지능들을 체험해보세요.</p>
+                    <p className='main-item-title'>Chika Lab AI Models</p>
+                    <p className='main-item-body'>Chika Lab 에서 제작중인 다양한 인공지능들을<br/>체험해보세요.</p>
                 </div>
-                <div style={{width: 'auto', height: 'auto'}}>
+                <div className='flex-wrap'>
                     <Link to='ai/model' onlyActiveOnIndex={true}>
-                        <button className='MainItemButton' id='button' onClick={this.span}
+                        <button className='button b-main-color white opacity05-hover' id='button' onClick={this.span}
                                 onAnimationEnd={this.buttonRemove}
                                 onMouseLeave={this.buttonLeave} onMouseOver={this.buttonFocus}>체험하기
                         </button>
                     </Link>
                 </div>
-                <div style={{direction: 'flex', justifyContent: 'center', alignContent: 'center'}}>
+                <div className='flex-wrap'>
                     {this.props.children}
                 </div>
             </div>
@@ -169,36 +152,37 @@ class Models extends React.Component {
 class ModelPage extends React.Component {
     render(){
         return (
-            <div className='MainItem' id='mainModelPage' style={{
-                height: '30rem', animationDuration: '1s', animationName: 'spread-down-65rem',
-                marginBottom: '3rem', display: 'flex', justifyContent: 'center'
-            }}>
-                <div className='ModelMenu'>
-                    <div className='ModelInfo'>
-                        <div className='ModelIcon'>
-                            <h1 className='WhiteText' style={{fontSize: '3rem'}}>교정</h1>
-                            <p className='WhiteText'># 남들이 보는 내 치열상태는?</p>
-                            <p className='WhiteText'># Ai로 점수 확인해보기</p>
+            <div className='main-item flex-wrap' id='mainModelPage'>
+                <div className='flex-wrap width100 model-list'>
+                    <div className='flex-wrap column model-item'>
+                        <div className='b-main-color white model-icon radius20 flex-wrap column'>
+                            <p className='main-item-title bold font-size-large'>교정</p>
+                            <div>
+                                <p># 남들이 보는 내 치열상태는?</p>
+                                <p># Ai로 점수 확인해보기</p>
+                            </div>
                         </div>
                         <Link to={{
                             pathname: '/ai/model/occlusion',
                             state:{
                                 modelId: 'occlusion'
                             }
-                        }}><h3 className='ModelTry'>체험하기</h3></Link>
+                        }}><p className='main-item-body main-color'>체험하기</p></Link>
                     </div>
-                    <div className='ModelInfo'>
-                        <div className='ModelIcon'>
-                            <h1 className='WhiteText' style={{fontSize: '3rem'}}>미백</h1>
-                            <p className='WhiteText'># 내 치아색상 자가진단</p>
-                            <p className='WhiteText'># 나만의 미백 점수 알아보기</p>
+                    <div className='flex-wrap column model-item'>
+                        <div className='b-main-color white model-icon radius20 flex-wrap column'>
+                            <p className='main-item-title bold font-size-large'>미백</p>
+                            <div>
+                                <p ># 내 치아색상 자가진단</p>
+                                <p ># 나만의 미백 점수 알아보기</p>
+                            </div>
                         </div>
                         <Link to={{
                             pathname: '/ai/model/white',
                             state: {
                                 modelId: 'white'
                             }
-                        }}><h3 className='ModelTry'>체험하기</h3></Link>
+                        }}><p className='main-item-body main-color'>체험하기</p></Link>
                     </div>
                 </div>
             </div>
@@ -220,7 +204,7 @@ class Model extends React.Component {
         this.handleUploadImage = this.handleUploadImage.bind(this);
         this.onSubmitActivate = this.onSubmitActivate.bind(this);
         this.responseResult = this.responseResult.bind(this);
-        this.scroll = this.scroll.bind(this);
+        this.scrollToBottom = this.scrollToBottom.bind(this);
     }
 
     componentDidMount() {
@@ -230,39 +214,41 @@ class Model extends React.Component {
         }
     }
 
-    scroll(){
-        let modelPage = document.getElementById('modelPage');
-        let bottom = modelPage.offsetTop + modelPage.offsetHeight;
-        window.scrollTo({top: bottom, behavior: 'smooth'});
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom(){
+        let page = document.getElementById('modelPage');
+        let bottom = page.offsetTop + page.offsetHeight;
+        window.scrollTo({top: bottom, behavior: "smooth"});
     }
 
     render(){
         return(
-            <div id='modelPage' className='MainItem' style={{height: '65rem', display: 'flex', flexDirection: 'column',
-                justifyContent: 'space-between'}}>
+            <div id='modelPage' className='main-item paddingBottom'>
                 <div id='modelTry'>
-                    <h1 className='MainItemTitle' style={{fontSize: '3rem', textAlign: 'center', marginTop: '5rem', marginBottom: '5rem'}}>{this.state.modelId.toUpperCase()} MODEL</h1>
-                    <div style={{display: 'flex', alignItems: 'stretch', justifyContent: 'space-around'}}>
-                        <img src={this.state.imageURL? this.state.imageURL : '/static/images/smile.png'} alt='' id='thumbnail' style={{height: '30rem', width: '30rem',
-                            borderRadius: '3rem', marginBottom: '2rem'}}/>
-                        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center',}}>
-                            <p className='MainItemInfo' style={{fontSize: '2.5rem', textAlign: 'center'}}>사진과 같이 치아를 보인</p>
-                            <p className='MainItemInfo' style={{fontSize: '2.5rem', textAlign: 'center', marginBottom: '1rem'}}>얼굴 정면 사진을 올려주세요</p>
-                            <div style={{display: 'flex'}}>
-                                <div style={{height: '6rem', marginRight: '3rem'}}>
-                                    <label htmlFor='image' className='MainItemButton' style={{opacity: '1'}}>사진 선택</label>
-                                    <input id='image' ref={(ref) => { this.uploadInput = ref; }} type='file'
-                                           accept='.jpg, .jpeg, .png' onChange={this.onSubmitActivate}/>
+                    <h1 className='main-item-title bold'>{this.state.modelId.toUpperCase()} MODEL</h1>
+                    <div className='flex-wrap width100'>
+                        <img className='image radius10'
+                             src={this.state.imageURL? this.state.imageURL : '/static/images/smile.png'}
+                             alt='' id='thumbnail'/>
+                        <div className='flex-wrap column width100'>
+                            <p className='main-item-body'>사진과 같이 치아를 보인<br/>얼굴 정면 사진을 올려주세요</p>
+                            <div className='flex-wrap width100 font-size-middle'>
+                                <div className='button b-main-color white flex-wrap'>
+                                    <label htmlFor='image' className='button flex-wrap text-center'>사진 선택</label>
+                                    <input id='image' ref={(ref) => { this.uploadInput = ref; }}
+                                           type='file' accept='.jpg, .jpeg, .png' onChange={this.onSubmitActivate}/>
                                 </div>
-                                <br/>
                                 <div>
-                                    <button className='MainItemButton' id='submit' onClick={this.handleUploadImage}
-                                            style={{height: '6.2rem'}}>측정하기</button>
+                                    <button className='button b-main-color white opacity05 font-size-middle' id='submit'
+                                            onClick={this.handleUploadImage}>측정하기</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div style={{marginTop:'5rem', }}>
+                    <div id='infoMessage' className='flex-wrap' style={{marginTop: '100px'}}>
                         {this.state.infoMessage}
                     </div>
                 </div>
@@ -290,6 +276,7 @@ class Model extends React.Component {
             duration: 1000,
             fill: "forwards"
         });
+        this.scrollToBottom();
     }
 
     handleUploadImage(ev) {
@@ -301,8 +288,13 @@ class Model extends React.Component {
         let data = new FormData();
         data.append('image', files[0]);
         this.setState({
-            infoMessage: <h4 className='ModelResultText' style={{animationIterationCount: 'infinite'}}>AI가 사진을 분석하고 있어요!</h4>
+            infoMessage: <div className='width50vw height50vw b-main-color white radius10
+            animation-alert animation-infinite flex-wrap'>
+                <h3>AI가 사진을 분석하고 있어요!</h3></div>
         });
+        // let infoMessage = document.getElementById('infoMessage');
+        // let location = infoMessage.offsetTop + infoMessage.offsetHeight + 10;
+        // window.scrollTo({top: location, behavior: "smooth"});
         fetch('/upload/' + this.state.modelId, {
             method: 'POST',
             body: data,
@@ -321,40 +313,30 @@ class Model extends React.Component {
             return;
         }
         this.setState({
-            infoMessage: '',
+            infoMessage: <p className='main-item-title'>분석을 완료했어요</p>,
         });
-        let mainPage = document.getElementById('modelPage');
-        mainPage.animate([
-            {height: '65rem'},
-            {height: '150rem'}
-        ], {
-            duration: 1000,
-            fill: "forwards"
-        });
-
-        this.scroll();
 
         switch (model) {
             case 'occlusion':
                 let isBrace = response.isBrace;
                 let score = response.score;
                 this.setState({
-                    modelResult: <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                        <h1 className='MainItemTitle' style={{fontSize: '5rem', textAlign: 'center'}}>Result</h1>
-                        <img className='ModelResultImage' src={response.imgUrl}/>
-                        <h4 className='ModelResultText'>교정 여부  <h1>{isBrace}</h1></h4>
-                        <h4 className='ModelResultText'>내 교정 점수 <h1>{score} 점</h1></h4>
+                    modelResult: <div className='flex-wrap column'>
+                        <p className='main-item-title bold'>Result</p>
+                        <img className='image radius10' src={response.imgUrl}/>
+                        <p className='main-item-body'>교정 여부  <b className='main-item-title'>{isBrace}</b></p>
+                        <p className='main-item-body'>내 교정 점수  <b className='main-item-title'>{score} 점</b></p>
                     </div>
                 })
                 break
             case 'white':
                 let shade = response.shade;
                 this.setState({
-                    modelResult: <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
-                        <h1 className='MainItemTitle' style={{fontSize: '3rem', textAlign: 'center'}}>Result</h1>
-                        <img className='ModelResultImage' src={response.imgUrl}/>
-                        <h4 className='ModelResultText'>내 미백 등급 <h1>{shade}</h1></h4>
-                        <img src='/static/images/shade_chart.png' style={{marginTop: '3rem'}}/>
+                    modelResult: <div className='flex-wrap column'>
+                        <p className='main-item-title bold'>Result</p>
+                        <img className='image radius10' src={response.imgUrl}/>
+                        <p className='main-item-body'>내 미백 등급 <b className='main-item-title'>{shade}</b></p>
+                        <img className='width100' src='/static/images/shade_chart.png'/>
                     </div>
                 })
                 break
@@ -365,8 +347,8 @@ class Model extends React.Component {
 class About extends React.Component {
     render(){
         return (
-            <div className='MainItem' style={{animationDuration: '1s', animationName: 'slide'}}>
-                <p className='MainItemTitle'>About Us</p>
+            <div className='main-item'>
+                <p className='main-item-title'>About Us</p>
             </div>
         );
     }
@@ -376,7 +358,7 @@ ReactDOM.render((
         <Router history={browserHistory}>
             <Route path='/' component={Index}>
                 <Route path='/ai' component={Models}/>
-                <Route exact path='/ai/model' component={ModelPage}></Route>
+                <Route exact path='/ai/model' component={ModelPage}/>
                 <Route path='/ai/model/:modelId' component={Model}/>
                 <Route path='/about' component={About}/>
             </Route>

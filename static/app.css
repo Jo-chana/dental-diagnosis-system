@@ -54,12 +54,11 @@ body {
     vertical-align: middle;
 }
 
-.MainItem {
-    width: calc(80vw - 10rem);
+.main-item {
+    width: 80vw;
     height: 20rem;
     background-color: white;
     border-radius: 1rem;
-    padding: 2rem 3rem 2rem;
     margin: 0rem auto;
     display: flex;
     flex-direction: column;
@@ -103,6 +102,8 @@ body {
 .NavTab {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: space-around;
     height: auto;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -124,11 +125,13 @@ body {
 
 .ModelInfo {
     display: flex;
+    width: auto;
     flex-direction: column;
     align-content: center;
     justify-content: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
-
 .ModelIcon {
     width: 25vw;
     height: 25vw;
@@ -139,6 +142,7 @@ body {
     align-content: center;
     justify-content: center;
 }
+
 
 .ModelTry {
     text-align: center;
