@@ -301,4 +301,10 @@ input[type=file] {
         width: 15vw;
         height: 5vw;
     }
+    .opacity05-hover {
+        opacity: 0.5;
+    }
+    .opacity07-hover {
+        opacity: 0.7;
+    }
 }
