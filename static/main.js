@@ -153,8 +153,8 @@ class ModelPage extends React.Component {
     render(){
         return (
             <div className='main-item flex-wrap' id='mainModelPage'>
-                <div className='flex-wrap width100 model-list'>
-                    <div className='flex-wrap column model-item'>
+                <div className='flex-wrap width100 column-only-mobile'>
+                    <div className='flex-wrap column width-100-only-mobile'>
                         <div className='b-main-color white model-icon radius20 flex-wrap column'>
                             <p className='main-item-title bold font-size-large'>교정</p>
                             <div>
@@ -169,7 +169,7 @@ class ModelPage extends React.Component {
                             }
                         }}><p className='main-item-body main-color'>체험하기</p></Link>
                     </div>
-                    <div className='flex-wrap column model-item'>
+                    <div className='flex-wrap column width-100-only-mobile'>
                         <div className='b-main-color white model-icon radius20 flex-wrap column'>
                             <p className='main-item-title bold font-size-large'>미백</p>
                             <div>
@@ -229,11 +229,11 @@ class Model extends React.Component {
             <div id='modelPage' className='main-item paddingBottom'>
                 <div id='modelTry'>
                     <h1 className='main-item-title bold'>{this.state.modelId.toUpperCase()} MODEL</h1>
-                    <div className='flex-wrap width100'>
+                    <div className='flex-wrap width100 column-only-mobile'>
                         <img className='image radius10'
                              src={this.state.imageURL? this.state.imageURL : '/static/images/smile.png'}
                              alt='' id='thumbnail'/>
-                        <div className='flex-wrap column width100'>
+                        <div className='flex-wrap column width-100-only-mobile'>
                             <p className='main-item-body'>사진과 같이 치아를 보인<br/>얼굴 정면 사진을 올려주세요</p>
                             <div className='flex-wrap width100 font-size-middle'>
                                 <div className='button b-main-color white flex-wrap'>
