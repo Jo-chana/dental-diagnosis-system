@@ -24,4 +24,6 @@ def get_file_path_with_result_image(image):
     file_path = f'static/images/{image_name}'
     cv2.imwrite(file_path, result_image)
     upload_to_s3(file_path, folder_name='chikalab', file_name=image_name)
+    cv2.imwrite(f'/tmp/{image_name}', mouth_image)
+    upload_to_s3(f'/tmp/{image_name}', folder_name='chikalab', file_name=f'original/{image_name}')
     return '/' + file_path, mouth_image
