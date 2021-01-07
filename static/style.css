@@ -30,6 +30,10 @@ p {
     font-size: 1.5rem;
 }
 
+.font-size-small {
+    font-size: 1rem;
+}
+
 .padding-none {
     padding: 0;
 }
