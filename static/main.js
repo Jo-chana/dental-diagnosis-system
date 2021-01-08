@@ -17,11 +17,11 @@ class Index extends React.Component {
                 </div>
                 <div className='flex-wrap b-white main-tab' id='navTab'>
                     <Link to='/ai'><p className='main-color opacity07-hover' id='nav1'
-                                       data-id='nav1' onMouseOver={this.mouseOver}
-                                       onMouseLeave={this.mouseLeave} onClick={this.onClick}>Models</p></Link>
+                                      data-id='nav1' onMouseOver={this.mouseOver}
+                                      onMouseLeave={this.mouseLeave} onClick={this.onClick}>Models</p></Link>
                     <Link to='/about'><p className='main-color opacity07-hover' id='nav2'
-                                          data-id='nav2' onMouseOver={this.mouseOver}
-                                          onMouseLeave={this.mouseLeave} onClick={this.onClick}>About Us</p></Link>
+                                         data-id='nav2' onMouseOver={this.mouseOver}
+                                         onMouseLeave={this.mouseLeave} onClick={this.onClick}>About Us</p></Link>
                 </div>
                 {this.props.children? this.props.children : this.init()}
             </div>
@@ -91,7 +91,7 @@ class Models extends React.Component {
     render(){
         return (
             <div className='main-item' id='mainModelPage'>
-                <div style={{marginBottom: '3rem'}}>
+                <div className='p-padding' style={{marginBottom: '3rem'}}>
                     <p className='main-item-title'>Chika Lab AI Models</p>
                     <p className='main-item-body'>Chika Lab 에서 제작중인 다양한 인공지능들을<br/>체험해보세요.</p>
                 </div>
@@ -155,34 +155,39 @@ class ModelPage extends React.Component {
             <div className='main-item flex-wrap' id='mainModelPage'>
                 <div className='flex-wrap width100 column-only-mobile'>
                     <div className='flex-wrap column width-100-only-mobile'>
-                        <div className='b-main-color white model-icon radius20 flex-wrap column'>
-                            <p className='main-item-title bold font-size-large'>교정</p>
-                            <div>
-                                <p># 남들이 보는 내 치열상태는?</p>
-                                <p># Ai로 점수 확인해보기</p>
-                            </div>
-                        </div>
                         <Link to={{
                             pathname: '/ai/model/occlusion',
                             state:{
                                 modelId: 'occlusion'
                             }
-                        }}><p className='main-item-body main-color'>체험하기</p></Link>
-                    </div>
-                    <div className='flex-wrap column width-100-only-mobile'>
-                        <div className='b-main-color white model-icon radius20 flex-wrap column'>
-                            <p className='main-item-title bold font-size-large'>미백</p>
-                            <div>
-                                <p ># 내 치아색상 자가진단</p>
-                                <p ># 나만의 미백 점수 알아보기</p>
+                        }}>
+                            <div className='animation-slide b-main-color white model-icon radius20 flex-wrap column'>
+                                <p className='main-item-title bold font-size-large'>교정</p>
+                                <div>
+                                    <p># 남들이 보는 내 치열상태는?</p>
+                                    <p># Ai로 점수 확인해보기</p>
+                                </div>
+                                <p className='main-item-body bold'>체험하기</p>
                             </div>
-                        </div>
+                        </Link>
+                    </div>
+                    <br/><br/><br/>
+                    <div className='flex-wrap column width-100-only-mobile'>
                         <Link to={{
                             pathname: '/ai/model/white',
                             state: {
                                 modelId: 'white'
                             }
-                        }}><p className='main-item-body main-color'>체험하기</p></Link>
+                        }}>
+                            <div className='animation-slide b-main-color white model-icon radius20 flex-wrap column'>
+                                <p className='main-item-title bold font-size-large'>미백</p>
+                                <div>
+                                    <p ># 내 치아색상 자가진단</p>
+                                    <p ># 나만의 미백 점수 알아보기</p>
+                                </div>
+                                <p className='main-item-body bold'>체험하기</p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -243,10 +248,12 @@ class Model extends React.Component {
                              src={this.state.imageURL? this.state.imageURL : '/static/images/smile.png'}
                              alt='' id='thumbnail'/>
                         <div className='flex-wrap column width-100-only-mobile'>
+                            <br/><br/>
                             <p className='main-item-body'>사진과 같이 치아를 보인<br/>
-                            얼굴 정면 사진을 올려주세요<br/>
-                            <b className='font-size-small'>* 얼굴의 전체 모습을 찍어야 인식할 수 있어요:)
-                                <br/>* 개인정보 보호를 위해 얼굴 사진은 저장되지 않아요:D</b></p>
+                                얼굴 정면 사진을 올려주세요<br/>
+                                <b className='font-size-small'>* 얼굴의 전체 모습을 찍어야 인식할 수 있어요:)
+                                    <br/>* 개인정보 보호를 위해 얼굴 사진은 저장되지 않아요:D</b></p>
+                            <br/><br/><br/>
                             <div className='flex-wrap width100 font-size-middle'>
                                 <div className='button b-main-color white flex-wrap'>
                                     <label htmlFor='image' className='button flex-wrap text-center'>사진 선택</label>
@@ -326,7 +333,7 @@ class Model extends React.Component {
             this.setState({
                 infoMessage: <div className='model-info-message b-main-color white
             animation-alert flex-wrap'>
-                <h3>{response.message}</h3></div>
+                    <h3>{response.message}</h3></div>
             });
             return;
         }
