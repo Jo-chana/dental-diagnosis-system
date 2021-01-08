@@ -1,12 +1,9 @@
-FROM python:3.7-slim
+FROM python:3.8-slim-buster AS builder
 
-ENV APP_HOME /app
-WORKDIR $APP_HOME
-COPY . ./
+WORKDIR /chikalab
+COPY requirements.txt /chikalab
 
-RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-
 RUN apt-get -y update
 RUN apt-get install -y --fix-missing \
     build-essential \
@@ -24,14 +21,15 @@ RUN apt-get install -y --fix-missing \
     libjpeg-dev \
     liblapack-dev \
     libswscale-dev \
-    && apt-get clean && rm -rf /tmp/* /var/tmp/*
-
-RUN cd ~ && \
+    && apt-get clean && rm -rf /tmp/* /var/tmp/* \
+    cd ~ && \
     mkdir -p dlib && \
     git clone -b 'v19.9' --single-branch https://github.com/davisking/dlib.git dlib/ && \
     cd dlib/ && \
     python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
-ENV PYTHONUNBUFFERED True
+COPY . ./
+ENV PYTHONUNBUFFERED Trued
 
 CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
+#ENTRYPOINT FLASK_APP=/chikalab/main.py flask run --host=0.0.0.0
