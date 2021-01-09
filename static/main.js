@@ -16,9 +16,9 @@ class Index extends React.Component {
                     <a href='/'><p className="main-title white text-center">Chika Lab</p></a>
                 </div>
                 <div className='flex-wrap b-white main-tab' id='navTab'>
-                    <Link to='/ai'><p className='main-color opacity07-hover' id='nav1'
+                    <Link to='/service'><p className='main-color opacity07-hover' id='nav1'
                                       data-id='nav1' onMouseOver={this.mouseOver}
-                                      onMouseLeave={this.mouseLeave} onClick={this.onClick}>Models</p></Link>
+                                      onMouseLeave={this.mouseLeave} onClick={this.onClick}>Service</p></Link>
                     <Link to='/about'><p className='main-color opacity07-hover' id='nav2'
                                          data-id='nav2' onMouseOver={this.mouseOver}
                                          onMouseLeave={this.mouseLeave} onClick={this.onClick}>About Us</p></Link>
@@ -72,8 +72,8 @@ class Index extends React.Component {
     init(){
         return (
             <div className='main-item' id='main'>
-                <p className='main-item-title'>치카치카 AI Lab</p>
-                <p className='main-item-body light'>Oral Health Application Corporation</p>
+                <p className='main-item-title p-padding'>치카치카 AI Lab</p>
+                <p className='main-item-body light p-padding'>Oral Health Application Corporation</p>
             </div>
         );
     }
@@ -92,11 +92,11 @@ class Models extends React.Component {
         return (
             <div className='main-item' id='mainModelPage'>
                 <div className='p-padding' style={{marginBottom: '3rem'}}>
-                    <p className='main-item-title'>Chika Lab AI Models</p>
-                    <p className='main-item-body'>Chika Lab 에서 제작중인 다양한 인공지능들을<br/>체험해보세요.</p>
+                    <p className='main-item-title p-padding'>Chika Lab AI Models</p>
+                    <p className='main-item-body p-padding'>Chika Lab 에서 제작중인 다양한 인공지능들을<br/>체험해보세요.</p>
                 </div>
                 <div className='flex-wrap'>
-                    <Link to='ai/model' onlyActiveOnIndex={true}>
+                    <Link to='service/model' onlyActiveOnIndex={true}>
                         <button className='button b-main-color white opacity05-hover' id='button' onClick={this.span}
                                 onAnimationEnd={this.buttonRemove}
                                 onMouseLeave={this.buttonLeave} onMouseOver={this.buttonFocus}>체험하기
@@ -156,7 +156,7 @@ class ModelPage extends React.Component {
                 <div className='flex-wrap width100 column-only-mobile'>
                     <div className='flex-wrap column width-100-only-mobile'>
                         <Link to={{
-                            pathname: '/ai/model/occlusion',
+                            pathname: '/service/model/occlusion',
                             state:{
                                 modelId: 'occlusion'
                             }
@@ -174,7 +174,7 @@ class ModelPage extends React.Component {
                     <br/><br/><br/>
                     <div className='flex-wrap column width-100-only-mobile'>
                         <Link to={{
-                            pathname: '/ai/model/white',
+                            pathname: '/service/model/white',
                             state: {
                                 modelId: 'white'
                             }
@@ -402,9 +402,9 @@ class About extends React.Component {
 ReactDOM.render((
         <Router history={browserHistory}>
             <Route path='/' component={Index}>
-                <Route path='/ai' component={Models}/>
-                <Route exact path='/ai/model' component={ModelPage}/>
-                <Route path='/ai/model/:modelId' component={Model}/>
+                <Route path='/service' component={Models}/>
+                <Route exact path='/service/model' component={ModelPage}/>
+                <Route path='/service/model/:modelId' component={Model}/>
                 <Route path='/about' component={About}/>
             </Route>
         </Router>
