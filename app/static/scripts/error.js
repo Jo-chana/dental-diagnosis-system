@@ -1,4 +1,6 @@
-let {Router, Route, Link, browserHistory} = window.ReactRouter;
+import React from "react";
+import {Route, BrowserRouter as Router} from "react-router-dom";
+import ReactDOM from 'react-dom';
 
 class ErrorPage400 extends React.Component {
     render() {
@@ -25,7 +27,7 @@ class ErrorPage404 extends React.Component {
 }
 
 ReactDOM.render((
-        <Router history={browserHistory}>
+        <Router>
             <Route path='/model' component={ErrorPage400}/>
             <Route path='/*' component={ErrorPage404}/>
         </Router>
