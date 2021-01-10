@@ -1,6 +1,6 @@
 FROM node:12.18.0-alpine as build
 
-WORKDIR /chika-lab/app/static
+WORKDIR /chikalab/app/static
 COPY ./app/static/package.json ./
 COPY ./app/static/package-lock.json ./
 RUN npm install
@@ -34,11 +34,11 @@ RUN apt-get install -y --fix-missing \
     cd dlib/ && \
     python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
-WORKDIR /chika-lab
+WORKDIR /chikalab
 COPY requirements.txt /chika-lab
 RUN pip install -r requirements.txt
 COPY . ./
-COPY --from=build /app/static/dist/ ./
+COPY --from=build /chikalab/app/static/dist/ ./static/
 ENV PYTHONUNBUFFERED Trued
 #CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
 ENTRYPOINT FLASK_APP=/chika-lab/app/main.py flask run --host=0.0.0.0
