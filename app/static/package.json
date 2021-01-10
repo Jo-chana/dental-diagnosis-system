@@ -1,7 +1,7 @@
 {
-  "name": "flask-react-app",
+  "name": "chikalab",
   "version": "1.0.0",
-  "description": "flask and react template",
+  "description": "chika chika laboratory  website",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
@@ -43,6 +43,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "''"
+    "url": "https://github.com/Jo-chana/chikalab.git"
   }
 }
