@@ -4,8 +4,6 @@ WORKDIR /chikalab/app/static
 COPY ./app/static/package.json ./
 COPY ./app/static/package-lock.json ./
 RUN npm install
-COPY ./app/static ./
-CMD ["npm", "run", "build"]
 
 
 FROM python:3.8-slim-buster
@@ -38,9 +36,10 @@ WORKDIR /chikalab
 COPY ./requirements.txt /chikalab
 RUN pip install -r requirements.txt
 COPY . ./
-COPY --from=build /chikalab/app/static/dist/ ./static/
+COPY --from=build /chikalab/app/static/ ./static/
 ENV PYTHONUNBUFFERED Trued
 CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
-#ENTRYPOINT FLASK_APP=/chika-lab/app/main.py flask run --host=0.0.0.0
-#CMD python main.py
+#ENTRYPOINT FLASK_APP=/chikalab/app/main.py flask run --host=0.0.0.0
+#WORKDIR /chikalab/app
+#CMD ["python", "main.py"]
 

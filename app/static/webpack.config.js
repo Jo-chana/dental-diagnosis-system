@@ -3,7 +3,7 @@ const config = {
     mode: 'development',
     entry: __dirname + '/scripts/index.js',
     output: {
-        path: __dirname + '/dist',
+        path: __dirname,
         filename: 'bundle.js',
     },
     resolve: {
