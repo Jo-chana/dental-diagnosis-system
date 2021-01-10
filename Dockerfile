@@ -1,8 +1,10 @@
-FROM node:12.2.0-alpine
+FROM node:12.18.0-alpine as build
 
 WORKDIR /chika-lab/app/static
-COPY package.json /chika-lab/app/static/package.json
+COPY ./app/static/package.json ./
+COPY ./app/static/package-lock.json ./
 RUN npm install
+COPY ./app/static ./
 CMD ["npm", "run", "build"]
 
 
@@ -36,6 +38,7 @@ WORKDIR /chika-lab
 COPY requirements.txt /chika-lab
 RUN pip install -r requirements.txt
 COPY . ./
+COPY --from=build /app/static/dist/ ./
 ENV PYTHONUNBUFFERED Trued
 #CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
 ENTRYPOINT FLASK_APP=/chika-lab/app/main.py flask run --host=0.0.0.0
