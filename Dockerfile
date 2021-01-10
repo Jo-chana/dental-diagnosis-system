@@ -35,12 +35,12 @@ RUN apt-get install -y --fix-missing \
     python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
 WORKDIR /chikalab
-COPY requirements.txt /chika-lab
+COPY ./requirements.txt /chikalab
 RUN pip install -r requirements.txt
 COPY . ./
 COPY --from=build /chikalab/app/static/dist/ ./static/
 ENV PYTHONUNBUFFERED Trued
-#CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
-ENTRYPOINT FLASK_APP=/chika-lab/app/main.py flask run --host=0.0.0.0
-
+CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
+#ENTRYPOINT FLASK_APP=/chika-lab/app/main.py flask run --host=0.0.0.0
+#CMD python main.py
 
