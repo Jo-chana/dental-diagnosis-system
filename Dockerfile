@@ -1,7 +1,7 @@
 FROM node:12.2.0-alpine
 
 WORKDIR /chika-lab/app/static
-COPY package.json /chika-lab/app/static/
+COPY package.json /chika-lab/app/static/package.json
 RUN npm install
 CMD ["npm", "run", "build"]
 
