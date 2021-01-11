@@ -38,5 +38,5 @@ RUN pip install -r requirements.txt
 COPY . ./
 COPY --from=build /chikalab/app/static/ ./static/
 ENV PYTHONUNBUFFERED Trued
-CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 /chikalab/app/main:app
+CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 chikalab.app.main:app
 #ENTRYPOINT FLASK_APP=/chikalab/app/main.py flask run --host=0.0.0.0
