@@ -1,7 +1,7 @@
 from collections import OrderedDict
 import numpy as np
 import cv2
-from app.utils.models import get_predictor, get_detector
+from utils.models import get_predictor, get_detector
 
 facial_features_coordinates = {}
 

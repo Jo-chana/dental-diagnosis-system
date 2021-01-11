@@ -1,8 +1,8 @@
 import cv2
-from app.utils.image_processing import detect_mouth_with_signed_image
+from utils.image_processing import detect_mouth_with_signed_image
 from werkzeug.utils import secure_filename
 import time
-from app.utils.boto_util import upload_to_s3
+from utils.boto_util import upload_to_s3
 
 
 def get_image_from_request(request):
