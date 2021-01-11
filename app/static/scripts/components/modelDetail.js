@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router";
 import '../../style.css'
 
-class Model extends React.Component {
+class ModelDetail extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -123,9 +123,7 @@ class Model extends React.Component {
             animation-alert animation-infinite flex-wrap'>
                 <h3>AI가 사진을 분석하고 있어요!</h3></div>
         });
-        // let infoMessage = document.getElementById('infoMessage');
-        // let location = infoMessage.offsetTop + infoMessage.offsetHeight + 10;
-        // window.scrollTo({top: location, behavior: "smooth"});
+
         fetch('/upload/' + this.state.modelId, {
             method: 'POST',
             body: data,
@@ -189,4 +187,4 @@ class Model extends React.Component {
 
 }
 
-export default withRouter(Model);
+export default withRouter(ModelDetail);

@@ -21,7 +21,7 @@ class Service extends React.Component {
         this.buttonFocus = this.buttonFocus.bind(this);
         this.buttonLeave = this.buttonLeave.bind(this);
     }
-    render(){
+    render() {
         return (
             <div className='main-item' id='mainModelPage'>
                 <div className='p-padding' style={{marginBottom: '3rem'}}>
