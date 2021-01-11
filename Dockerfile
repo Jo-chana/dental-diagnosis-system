@@ -7,6 +7,7 @@ ENV NODE_ENV development
 RUN npm install
 COPY ./app/static/ ./
 RUN npm run build
+COPY ./app/static/bundle.js /static/
 
 
 FROM python:3.8-slim-buster
