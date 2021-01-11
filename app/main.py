@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request
 
-from utils.image_util import get_image_from_request, get_file_path_with_result_image
-from utils.models import get_brace_predict, get_occ_predict
-from utils.shades import white_score
+from app.utils.image_util import get_image_from_request, get_file_path_with_result_image
+from app.utils.models import get_brace_predict, get_occ_predict
+from app.utils.shades import white_score
 import json
 import os
 
