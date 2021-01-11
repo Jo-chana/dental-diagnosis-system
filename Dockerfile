@@ -1,13 +1,13 @@
 FROM node:12.18.0-alpine as build
 
-WORKDIR /chikalab/app/static
-COPY ./app/static/package.json ./
-COPY ./app/static/package-lock.json ./
+WORKDIR /chikalab/static
+COPY ./static/package.json ./
+COPY ./static/package-lock.json ./
 ENV NODE_ENV development
 RUN npm install
-COPY ./app/static/ ./
+COPY ./static/ ./
 RUN npm run build
-COPY ./app/static/bundle.js /static/
+COPY ./static/bundle.js ./
 
 
 FROM python:3.8-slim-buster
@@ -37,13 +37,12 @@ RUN apt-get install -y --fix-missing \
     python3 setup.py install --yes USE_AVX_INSTRUCTIONS
 
 WORKDIR /chikalab
-COPY ./requirements.txt /chikalab
+COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY . ./
 
-COPY --from=build /chikalab/app/static/bundle.js ./static/
+COPY --from=build /chikalab/static/bundle.js ./static/
 ENV PYTHONUNBUFFERED Trued
-WORKDIR /chikalab/app
 CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
 #ENTRYPOINT FLASK_APP=/chikalab/app/main.py flask run --host=0.0.0.0
