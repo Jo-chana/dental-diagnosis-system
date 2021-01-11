@@ -33,6 +33,14 @@ export function NoticeMessage() {
     )
 }
 
+export function InputButton() {
+    return (
+        <div className='button b-main-color white flex-wrap'>
+            <label htmlFor='image' className='button flex-wrap text-center'>사진 선택</label>
+        </div>
+    )
+}
+
 export function SubmitButton(props) {
     return (
         <div>
@@ -50,9 +58,9 @@ function ModelResultComponent(props) {
             <img className='image radius10' src={data.image} alt=''/>
             {
                 data.indexes.map((value, index) =>
-                <p key={value} className='main-item-body'>{value}
-                    <b className='main-item-title'>{data.scores[index]}</b></p>
-            )}
+                    <p key={value} className='main-item-body'>{value}
+                        <b className='main-item-title'>{data.scores[index]}</b></p>
+                )}
             <img className='width100' src={data.appendix} alt=''/>
         </div>
     )
@@ -121,16 +129,3 @@ export function AlertMessage(props) {
         return null;
     }
 }
-
-export function InputButton(props) {
-    return (
-        <div className='button b-main-color white flex-wrap'>
-            <label htmlFor='image' className='button flex-wrap text-center'>사진 선택</label>
-            <input id='image' ref={(ref) => { this.uploadInput = ref; }}
-                   type='file' accept='.jpg, .jpeg, .png' onChange={this.onSubmitActivate}/>
-        </div>
-    )
-}
-
-
-

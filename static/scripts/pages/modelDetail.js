@@ -7,8 +7,8 @@ import {
     AlertMessage,
     SubmitButton,
     NoticeMessage,
-    ThumbNailImage, ModelTitle
-} from '../components/modelDetail'
+    ThumbNailImage, ModelTitle, InputButton
+} from '../components/modelDetail';
 
 class ModelDetail extends React.Component {
     constructor(props) {
@@ -65,11 +65,9 @@ class ModelDetail extends React.Component {
                             <NoticeMessage/>
                             <br/><br/><br/>
                             <div className='flex-wrap width100 font-size-middle'>
-                                <div className='button b-main-color white flex-wrap'>
-                                    <label htmlFor='image' className='button flex-wrap text-center'>사진 선택</label>
-                                    <input id='image' ref={(ref) => { this.uploadInput = ref; }}
-                                           type='file' accept='.jpg, .jpeg, .png' onChange={this.onSubmitActivate}/>
-                                </div>
+                                <InputButton/>
+                                <input id='image' ref={(ref) => {this.uploadInput = ref; }}
+                                    type='file' accept='.jpg, .jpeg, .png' onChange={this.onSubmitActivate}/>
                                 <SubmitButton click={this.handleUploadImage}/>
                             </div>
                         </div>

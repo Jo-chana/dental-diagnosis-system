@@ -1,7 +1,7 @@
 import React from "react";
 import '../../style.css'
 
-const About = () => {
+function About() {
     return (
         <div className='main-item'>
             <p className='main-item-title'>About Us</p>
