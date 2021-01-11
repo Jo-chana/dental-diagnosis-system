@@ -2,6 +2,42 @@ import React from "react";
 import { withRouter } from "react-router";
 import '../../style.css'
 
+function InfoMessage(props) {
+    if (props.message) {
+        return(
+            <div id='infoMessage' className='flex-wrap' style={{marginTop: '300px', marginBottom: '300px'}}>
+                {props.message}
+            </div>
+        );
+    } else {
+        return null;
+    }
+}
+
+function ModelResult(props) {
+    if (props.result) {
+        return (
+            <div id='modelResult' className='model-result'>
+                {props.result}
+            </div>
+        );
+    } else {
+        return null;
+    }
+}
+
+function AlertMessage(props) {
+    if (props.message) {
+        return (
+            <div className='model-alert b-main-color white'>
+                {props.message}
+            </div>
+        );
+    } else {
+        return null;
+    }
+}
+
 class ModelDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -74,17 +110,10 @@ class ModelDetail extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div id='infoMessage' className='flex-wrap' style={{marginTop: '300px', marginBottom: '300px'}}>
-                        {this.state.infoMessage}
-                    </div>
+                    <InfoMessage message={this.state.infoMessage}/>
                 </div>
-                <div id='modelResult' className='model-result'>
-                    {this.state.modelResult? this.state.modelResult :
-                        <p className='main-item-title'>이곳에서 결과를 볼 수 있어요</p>}
-                </div>
-                <div className='model-alert b-main-color white'>
-                    {this.state.alertMessage}
-                </div>
+                <ModelResult result={this.state.modelResult}/>
+                <AlertMessage message={this.state.alertMessage}/>
             </div>
         );
     }

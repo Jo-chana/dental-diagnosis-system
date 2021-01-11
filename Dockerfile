@@ -3,6 +3,7 @@ FROM node:12.18.0-alpine as build
 WORKDIR /chikalab/app/static
 COPY ./app/static/package.json ./
 COPY ./app/static/package-lock.json ./
+ENV NODE_ENV development
 RUN npm install
 COPY ./app/static/ ./
 RUN npm run build
@@ -40,7 +41,7 @@ RUN pip install -r requirements.txt
 
 COPY . ./
 
-COPY --from=build /chikalab/app/static/ ./static/
+COPY --from=build /chikalab/app/static/bundle.js ./static/
 ENV PYTHONUNBUFFERED Trued
 WORKDIR /chikalab/app
 CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
