@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import Main from './components/main'
-import Service from "./components/service";
-import ModelPage from "./components/modelPage";
-import ModelDetail from "./components/modelDetail";
-import About from "./components/about";
-import Intro from "./components/intro";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Main from './pages/Main'
+import Service from "./pages/Service";
+import ModelPage from "./pages/ModelPage";
+import ModelDetail from "./pages/ModelDetail";
+import About from "./pages/About";
+import Intro from "./pages/Intro";
 import '../style.css'
 
 ReactDOM.render((
