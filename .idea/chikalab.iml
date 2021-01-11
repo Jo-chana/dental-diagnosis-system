@@ -9,6 +9,7 @@
       <excludeFolder url="file://$MODULE_DIR$/instance" />
     </content>
     <content url="file://$MODULE_DIR$/app/static" />
+    <content url="file://$MODULE_DIR$/static" />
     <orderEntry type="jdk" jdkName="Python 3.7 (DAMDAM)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

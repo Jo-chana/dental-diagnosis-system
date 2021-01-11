@@ -39,7 +39,7 @@ class Main extends React.Component {
                 <Banner/>
                 <div className='flex-wrap b-white main-tab' id='navTab'>
                     {this.state.tabList.map((tab, index) => (
-                        <NavTab link={tab.link} title={tab.title} index={index}/>
+                        <NavTab link={tab.link} title={tab.title} index={index} key={tab.title}/>
                     ))}
                 </div>
             </div>
