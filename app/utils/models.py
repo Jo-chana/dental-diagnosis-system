@@ -1,7 +1,6 @@
 import tensorflow as tf
 import numpy as np
 import cv2
-from flask import url_for
 import dlib
 
 brace_interpreter = None

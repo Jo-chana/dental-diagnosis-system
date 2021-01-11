@@ -1,4 +1,4 @@
-from utils import image_processing
+from app.utils import image_processing
 import cv2
 import numpy as np
 

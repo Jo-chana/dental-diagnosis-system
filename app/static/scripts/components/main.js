@@ -4,8 +4,10 @@ import {Link} from "react-router-dom";
 
 function navTab(link, title, index) {
     return (
-        <Link to={'/'.concat(link)}><p key={index} className='main-color opacity07-hover' id={'nav'.concat(index.toString())}
-                                       data-id={'nav'.concat(index.toString())}>{title}</p></Link>
+        <Link to={'/'.concat(link)}>
+            <p key={index} className='main-color opacity07-hover' id={'nav'.concat(index.toString())}
+                                       data-id={'nav'.concat(index.toString())}>{title}</p>
+        </Link>
     )
 }
 
