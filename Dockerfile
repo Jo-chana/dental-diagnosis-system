@@ -5,7 +5,7 @@ COPY ./app/static/package.json ./
 COPY ./app/static/package-lock.json ./
 RUN npm install
 COPY ./app/static/ ./
-CMD npm run build
+CMD ["npm", "run", "build"]
 
 
 FROM python:3.8-slim-buster
