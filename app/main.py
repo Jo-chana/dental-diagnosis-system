@@ -15,11 +15,6 @@ def index(path=''):
     return render_template('base.html')
 
 
-@app.route('/article')
-def article():
-    return {'name': 'article page'}
-
-
 @app.route('/upload/<string:model>', methods=['POST'])
 def upload(model):
     if request.method == 'POST':

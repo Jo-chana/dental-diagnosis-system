@@ -36,7 +36,7 @@ WORKDIR /chikalab
 COPY ./requirements.txt /chikalab
 RUN pip install -r requirements.txt
 
-COPY /chikalab/app /chikalab/app
+COPY . ./
 
 COPY --from=build /chikalab/app/static/ ./static/
 ENV PYTHONUNBUFFERED Trued
