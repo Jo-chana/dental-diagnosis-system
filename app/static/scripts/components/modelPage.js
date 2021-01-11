@@ -3,8 +3,8 @@ import '../../style.css'
 import { Link } from "react-router-dom";
 
 function modelOption (model, title, info) {
-    const modelInfo = info.map((message) =>
-        <p>{message}</p>
+    const modelInfo = info.map((message, index) =>
+        <p key={index}>{message}</p>
     );
     return (
         <Link to={{

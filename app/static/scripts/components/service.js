@@ -2,6 +2,17 @@ import React from 'react';
 import '../../style.css'
 import { Link } from "react-router-dom";
 
+const tryButton = () => {
+    return (
+        <Link to='service/model'>
+            <button className='button b-main-color white opacity05-hover' id='button' onClick={this.span}
+                    onMouseLeave={this.buttonLeave} onMouseOver={this.buttonFocus}>체험하기
+            </button>
+        </Link>
+    )
+}
+
+
 class Service extends React.Component {
     constructor(props) {
         super(props);
@@ -9,7 +20,6 @@ class Service extends React.Component {
         this.span = this.span.bind(this);
         this.buttonFocus = this.buttonFocus.bind(this);
         this.buttonLeave = this.buttonLeave.bind(this);
-        this.buttonRemove = this.buttonRemove.bind(this);
     }
     render(){
         return (
@@ -19,15 +29,7 @@ class Service extends React.Component {
                     <p className='main-item-body p-padding'>Chika Lab 에서 제작중인 다양한 인공지능들을<br/>체험해보세요.</p>
                 </div>
                 <div className='flex-wrap'>
-                    <Link to='service/model'>
-                        <button className='button b-main-color white opacity05-hover' id='button' onClick={this.span}
-                                onAnimationEnd={this.buttonRemove}
-                                onMouseLeave={this.buttonLeave} onMouseOver={this.buttonFocus}>체험하기
-                        </button>
-                    </Link>
-                </div>
-                <div className='flex-wrap'>
-                    {this.props.children}
+                    {tryButton()}
                 </div>
             </div>
         );
@@ -39,12 +41,6 @@ class Service extends React.Component {
             let location = document.getElementById('mainModelPage').offsetTop;
             let offset = document.getElementById('navTab').offsetHeight + 10;
             window.scrollTo({top:location - offset, behavior:'smooth'});
-        }
-    }
-
-    buttonRemove(){
-        if(this.state.modelDetail){
-            document.getElementById('button').remove();
         }
     }
 
