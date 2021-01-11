@@ -2,12 +2,12 @@ import React from 'react';
 import '../../style.css'
 import { Link } from "react-router-dom";
 
-function TryButton() {
+function TryButton(props) {
     return (
         <div className='flex-wrap'>
             <Link to='service/model'>
-                <button className='button b-main-color white opacity05-hover' id='button' onClick={this.span}
-                        onMouseLeave={this.buttonLeave} onMouseOver={this.buttonFocus}>체험하기
+                <button className='button b-main-color white opacity05-hover' id='button' onClick={props.click}
+                        onMouseLeave={props.heave} onMouseOver={props.hover}>체험하기
                 </button>
             </Link>
         </div>
@@ -29,7 +29,7 @@ class Service extends React.Component {
                     <p className='main-item-title p-padding'>Chika Lab AI Models</p>
                     <p className='main-item-body p-padding'>Chika Lab 에서 제작중인 다양한 인공지능들을<br/>체험해보세요.</p>
                 </div>
-                <TryButton/>
+                <TryButton click={this.span} heave={this.buttonLeave} hover={this.buttonFocus}/>
             </div>
         );
     }
