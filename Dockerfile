@@ -40,5 +40,6 @@ COPY /chikalab/app /chikalab/app
 
 COPY --from=build /chikalab/app/static/ ./static/
 ENV PYTHONUNBUFFERED Trued
-CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 app.main:app
+WORKDIR /chikalab/app
+CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 main:app
 #ENTRYPOINT FLASK_APP=/chikalab/app/main.py flask run --host=0.0.0.0
