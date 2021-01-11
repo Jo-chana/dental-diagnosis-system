@@ -2,11 +2,11 @@ import React from 'react';
 import '../../style.css'
 import {Link} from "react-router-dom";
 
-function navTab(link, title, index) {
+function NavTab(props) {
     return (
-        <Link to={'/'.concat(link)}>
-            <p key={index} className='main-color opacity07-hover' id={'nav'.concat(index.toString())}
-                                       data-id={'nav'.concat(index.toString())}>{title}</p>
+        <Link to={'/'.concat(props.link)}>
+            <p key={props.index} className='main-color opacity07-hover' id={'nav'.concat(props.index.toString())}
+                                       data-id={'nav'.concat(props.index.toString())}>{props.title}</p>
         </Link>
     )
 }
@@ -33,7 +33,7 @@ class Main extends React.Component {
                 </div>
                 <div className='flex-wrap b-white main-tab' id='navTab'>
                     {this.state.tabList.map((tab, index) => (
-                        navTab(tab.link, tab.title, index + 1)
+                        <NavTab link={tab.link} title={tab.title} index={index}/>
                     ))}
                 </div>
             </div>
