@@ -35,7 +35,9 @@ RUN apt-get install -y --fix-missing \
 WORKDIR /chikalab
 COPY ./requirements.txt /chikalab
 RUN pip install -r requirements.txt
-COPY . ./
+
+COPY /chikalab/app /chikalab/app
+
 COPY --from=build /chikalab/app/static/ ./static/
 ENV PYTHONUNBUFFERED Trued
 CMD exec gunicorn --bind :$PORT --workers 2 --threads 8 app.main:app
