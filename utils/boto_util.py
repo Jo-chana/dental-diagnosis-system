@@ -1,10 +1,11 @@
 import boto3
+import os
 
-ACCESS_KEY = 'AKIAY4O73RNEOBTI3YDG'
-SECRET_KEY = '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'
+ACCESS_KEY = os.environ.get('ACCESS_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
-REGION = 'ap-northeast-2'
-BUCKET_NAME = 'chana-s3'
+REGION = os.environ.get('REGION')
+BUCKET_NAME = os.environ.get('BUCKET_NAME')
 
 
 def upload_to_s3(file_path, folder_name, file_name):
